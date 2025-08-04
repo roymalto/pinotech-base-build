@@ -7,7 +7,7 @@ This repo automates setting up Bahmni with Pinotech branding.
 ## 🚀 Quick Setup
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/bahmni-base-build.git
+git clone https://github.com/roymalto/pinotech-base-build.git
 cd bahmni-base-build
 chmod +x install.sh
 ./install.sh
