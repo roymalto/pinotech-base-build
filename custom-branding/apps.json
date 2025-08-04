@@ -1,0 +1,13 @@
+                                                                                        
+[
+  { "name": "home" },
+  { "name": "clinical" },
+  { "name": "registration" },
+  { "name": "reports" },
+  { "name": "admin" },
+  { "name": "orders" },
+  { "name": "diagnosis" },
+  { "name": "dispensation" },
+  { "name": "appointments" },
+  { "name": "programs" }
+]

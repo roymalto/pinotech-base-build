@@ -1,0 +1,13 @@
+{
+  "id": "home",
+  "extensionPointId": "org.bahmni.home.dashboard",
+  "type": "link",
+  "label": "Home",
+  "url": "../home/index.html",
+  "icon": "fa fa-home",
+  "order": 0,
+  "logo": "/bahmni/images/bahmniLogoFull.png",
+  "messages": {
+    "en": "locale_en.json"
+  }
+}
