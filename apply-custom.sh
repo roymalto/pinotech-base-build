@@ -3,6 +3,26 @@ set -euo pipefail
 
 echo "🔧 Applying Pinotech EMR branding..."
 
+# --- Copy docker-compose.yml and .env into bahmni-standard ---
+COMPOSE_SRC="$HOME/Projects/ATISHEALTH/custom-branding/docker-compose.yml"
+ENV_SRC="$HOME/Projects/ATISHEALTH/custom-branding/.env"
+BAHMNI_STD="$HOME/Projects/ATISHEALTH/bahmni-docker/bahmni-standard"
+
+echo "📂 Copying docker-compose.yml and .env into $BAHMNI_STD..."
+if [ -f "$COMPOSE_SRC" ]; then
+  cp "$COMPOSE_SRC" "$BAHMNI_STD/"
+  echo "✅ Copied docker-compose.yml"
+else
+  echo "⚠️  $COMPOSE_SRC not found"
+fi
+
+if [ -f "$ENV_SRC" ]; then
+  cp "$ENV_SRC" "$BAHMNI_STD/.env"
+  echo "✅ Copied .env"
+else
+  echo "⚠️  $ENV_SRC not found"
+fi
+
 # --- Locate Bahmni web container ---
 WEB_CONTAINER=$(docker ps --filter "name=bahmni-web" --format "{{.Names}}")
 if [ -z "$WEB_CONTAINER" ]; then
@@ -61,13 +81,11 @@ fi
 # 2) Find and update any JS files containing the phrase "Bahmni EMR"
 UPDATED=0
 
-# Prefer hashed home.min.*.js if they exist
 FILES=""
 if ls "$HTML_DIR"/home.min*.js >/dev/null 2>&1; then
   FILES=$(ls -1 "$HTML_DIR"/home.min*.js 2>/dev/null || true)
 fi
 
-# Fallback: any JS in the directory that actually contains the text
 if [ -z "$FILES" ]; then
   FILES=$(grep -l "Bahmni EMR" "$HTML_DIR"/*.js 2>/dev/null || true)
 fi
