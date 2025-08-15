@@ -1,4 +1,4 @@
-Steps in the Script
+
 1. Preparation
 
 Works inside your ~/Projects folder.
