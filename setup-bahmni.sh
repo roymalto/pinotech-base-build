@@ -47,12 +47,10 @@ mkdir -p "$DEST"
 
 # --- move contents safely (including hidden files) ---
 echo "📦 Moving pinotech-base-build contents to $DEST ..."
-# Use rsync to include hidden files and preserve attrs; then remove source
 if command -v rsync >/dev/null 2>&1; then
   rsync -a "$PINOTECH_DIR"/ "$DEST"/
   rm -rf "$PINOTECH_DIR"
 else
-  # fallback without rsync
   shopt -s dotglob nullglob
   mv "$PINOTECH_DIR"/* "$DEST"/ || true
   rmdir "$PINOTECH_DIR" 2>/dev/null || rm -rf "$PINOTECH_DIR"
@@ -71,7 +69,7 @@ elif [ -d "$BAHMNI_DIR" ]; then
   echo "ℹ️  $BAHMNI_DIR exists but is not a git repo. Using as-is."
 else
   echo "📥 Cloning bahmni-docker..."
-  git clone "$BAH MNI_REPO_URL" "$BAHMNI_DIR"
+  git clone "$BAHMNI_REPO_URL" "$BAHMNI_DIR"
 fi
 
 # --- ensure bahmni-standard exists ---
