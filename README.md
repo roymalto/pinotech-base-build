@@ -1,113 +1,69 @@
-# pinotech-base-build
-Development base build for Pinotech EMR server
+Steps in the Script
+1. Preparation
 
+Works inside your ~/Projects folder.
 
-Manual Install on Local Server (confirmed working)
-# Create on target Server
-mkdir ~/Projects
-mkdir ~/Projects/ATISHEALTH
-mkdir ~/Projects/ATISHEALTH/custom-branding
+Defines paths for:
 
-#Move to Source Server
-#To copy branding Run This on 192.168.1.35 (source server):
-rsync -avz /home/roym/Projects/ATISHEALTH/custom-branding/ roym@192.168.1.34:/home/roym/Projects/ATISHEALTH/custom-branding/
+pinotech-base-build repo
 
-#to copy script Run This on 192.168.1.35 (source server):
-scp /home/roym/Projects/ATISHEALTH/apply-branding.sh roym@192.168.1.34:/home/roym/Projects/ATISHEALTH/
+Destination: ~/Projects/ATISHEALTH
 
-to copy docker.compose.yml Run This on 192.168.1.35 (source server):
-scp /home/roym/Projects/ATISHEALTH/bahmni-docker/bahmni-standard/docker-compose.yml roym@192.168.1.34:/home/roym/Projects/ATISHEALTH/custom-branding/
+bahmni-docker repo and its bahmni-standard subfolder
 
-#Move to Target Server
-cd ~/Projects/ATISHEALTH
-git clone https://github.com/Bahmni/bahmni-docker.git
-cd bahmni-docker/bahmni-standard
-cp /home/roym/Projects/ATISHEALTH/custom-branding/docker-compose.yml /home/roym/Projects/ATISHEALTH/bahmni-docker/bahmni-standard/
-docker compose up -d
+Your custom-branding folder with docker-compose.yml and .env
 
-cd ~/Projects/ATISHEALTH/
-chmod +x apply-branding.sh
-./apply-branding.sh
+2. Clone or Update Pinotech Base Build
 
-#Flush Cloudflare cache or use incognito
-To do – update github to match files
--	custom-branding directory and contents
--	apply-branding.sh
--	docker-compose.yml
+If the repo exists:
 
+Pull latest changes if it’s a git repo.
 
-To be created as script (not confirmed)
+If not a git repo, uses its existing contents.
 
-#Create directories
-mkdir ~/Projects
-mkdir ~/Projects/ATISHEALTH
+If it doesn’t exist:
 
-#Download code
-cd ~/Projects/ATISHEALTH
-git clone https://github.com/Bahmni/bahmni-docker.git
-git clone https://github.com/roymalto/pinotech-base-build.git
+Clones from https://github.com/roymalto/pinotech-base-build.git.
 
-#Move custom files
-mv pinotech-base-build/* . && mv pinotech-base-build/.* . 2>/dev/null
-rmdir pinotech-base-build
+3. Move Base Build into ATISHEALTH Folder
 
-#copy configs and start
-cd ~/Projects/ATISHEALTH/bahmni-docker/bahmni-standard
-cp ~/Projects/ATISHEALTH/custom-branding/docker-compose.yml ~/Projects/ATISHEALTH/bahmni-docker/bahmni-standard/
-cp ~/Projects/ATISHEALTH/custom-branding/.env ~/Projects/ATISHEALTH/bahmni-docker/bahmni-standard
-docker compose up -d
+Creates ~/Projects/ATISHEALTH if it doesn’t exist.
 
-#Enable script and apply branding
-cd ~/Projects/ATISHEALTH
-chmod +x apply-branding.sh
-./apply-branding.sh
+Moves all files (including hidden ones) from pinotech-base-build into ATISHEALTH.
 
+Deletes the now-empty pinotech-base-build folder.
 
+Uses rsync if available for safer moves.
 
+4. Clone or Update Bahmni Docker
 
-Vanilla Install of Bahmni
+If bahmni-docker exists:
 
-# create directories
-mkdir ~/Projects
-mkdir ~/Projects/ATISHEALTH
+Pulls updates if it’s a git repo.
 
-#download Bahmni code
-cd ~/Projects/ATISHEALTH
-git clone https://github.com/Bahmni/bahmni-docker.git
-docker compose up -d
+If not:
 
-# this only installs emr unless .env is changed into bahmni-standard, atomfeed-
+Clones from https://github.com/Bahmni/bahmni-docker.git.
 
+5. Copy Custom Branding Configs
 
+Copies docker-compose.yml and .env from:
+~/Projects/ATISHEALTH/custom-branding/
+→ into:
+~/Projects/ATISHEALTH/bahmni-docker/bahmni-standard/
 
-# download customization and move custom files
-git clone https://github.com/roymalto/pinotech-base-build.git
-mv pinotech-base-build/* . && mv pinotech-base-build/.* . 2>/dev/null
-rmdir pinotech-base-build
+6. Start Bahmni
 
-#copy configs and start
-cd ~/Projects/ATISHEALTH/bahmni-docker/bahmni-standard
-cp ~/Projects/ATISHEALTH/custom-branding/docker-compose.yml ~/Projects/ATISHEALTH/bahmni-docker/bahmni-standard/
-cp ~/Projects/ATISHEALTH/custom-branding/.env ~/Projects/ATISHEALTH/bahmni-docker/bahmni-standard
+Changes into the bahmni-standard directory.
 
+Runs docker compose up -d (or docker-compose up -d if using v1).
 
+Starts Bahmni containers in the background.
 
+✅ End Result:
 
-#Enable script and apply branding
-cd ~/Projects/ATISHEALTH
-chmod +x apply-branding.sh
-./apply-branding.sh
+You have a ready-to-run Bahmni Docker environment in ~/Projects/ATISHEALTH
 
+It uses your custom Pinotech branding and configuration files
 
-
-# Bahmni Base Build with Custom Branding
-
-This repo automates setting up Bahmni with Pinotech branding.
-
-## 🚀 Quick Setup
-
-```bash
-git clone https://github.com/roymalto/pinotech-base-build.git
-cd bahmni-base-build
-chmod +x install.sh
-./install.sh
+Containers start automatically after setup
