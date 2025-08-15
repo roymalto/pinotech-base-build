@@ -34,6 +34,10 @@ copy_if_exists custom-branding/logo.png               /usr/local/apache2/htdocs/
 copy_if_exists custom-branding/analytics.png          /usr/local/apache2/htdocs/bahmni/images/analytics.png
 copy_if_exists custom-branding/app.png                /usr/local/apache2/htdocs/bahmni/images/app.png
 copy_if_exists custom-branding/bahmniLogo.png         /usr/local/apache2/htdocs/bahmni/images/bahmniLogo.png
+copy_if_exists custom-branding/lab.png                /usr/local/apache2/htdocs/bahmni/images/lab.png
+copy_if_exists custom-branding/bills.png              /usr/local/apache2/htdocs/bahmni/images/bills.png
+copy_if_exists custom-branding/connect.png            /usr/local/apache2/htdocs/bahmni/images/connect.png
+copy_if_exists custom-branding/pac.png                /usr/local/apache2/htdocs/bahmni/images/pac.png
 
 echo "🧩 Copying localization & config..."
 copy_if_exists custom-branding/locale_en.json         /usr/local/apache2/htdocs/bahmni_config/openmrs/apps/home/locale_en.json
