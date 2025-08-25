@@ -44,7 +44,7 @@ copy_if_exists custom-branding/locale_en.json           /usr/local/apache2/htdoc
 copy_if_exists custom-branding/whiteLabel.json          /usr/local/apache2/htdocs/bahmni_config/openmrs/apps/home/whiteLabel.json
 copy_if_exists custom-branding/app.json                 /usr/local/apache2/htdocs/bahmni_config/openmrs/apps/home/app.json
 copy_if_exists custom-branding/apps.json                /usr/local/apache2/htdocs/bahmni_config/openmrs/apps.json
-copy_if_exists custom-branding/registration/apps.json   /usr/local/apache2/htdocs/bahmni_config/openmrs/apps/registration/apps.json
+copy_if_exists custom-branding/registration/app.json   /usr/local/apache2/htdocs/bahmni_config/openmrs/apps/registration/app.json
 
 echo "✏️  Updating HTML title and auto-detecting JS bundles..."
 docker exec "$WEB_CONTAINER" sh -lc '
