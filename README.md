@@ -18,3 +18,9 @@ chmod +x apply-custom.sh
 
 run apply-custom.sh
 
+
+
+move pinotech-base-build
+mv /home/roym/Projects/ATISHEALTH/pinotech-base-build/* /home/roym/Projects/ATISHEALTH/pinotech-base-build/.* /home/roym/Projects/ATISHEALTH/ 2>/dev/null
+
+
