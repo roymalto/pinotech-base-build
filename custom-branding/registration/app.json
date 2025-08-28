@@ -47,10 +47,18 @@
                 "defaults":  {
                     "class": "General",
                     "landHolding": 2
-                }
-            },
-            "hideFormName": true,
-            "addressHierarchy": {
+                },
+                "addressFields": [
+                  { "name": "address1",      "label": "House No. / Street", "required": true },
+                  { "name": "address2",      "label": "Barangay",           "required": true },
+                  { "name": "cityVillage",   "label": "City / Municipality", "required": true },
+                  { "name": "stateProvince", "label": "Province",           "required": true },
+                  { "name": "postalCode",    "label": "ZIP Code" },
+                  { "name": "country",       "label": "Country", "default": "Philippines" }
+                ]
+               },
+
+             "addressHierarchy": {
                 "showAddressFieldsTopDown": false,
                 "strictAutocompleteFromLevel": "stateProvince"
             },
@@ -130,3 +138,4 @@
             }
         }
 }
+
