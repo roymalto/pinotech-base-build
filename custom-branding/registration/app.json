@@ -68,7 +68,7 @@
     },
 
     "autoCompleteFields": ["familyName"],
-    "defaultIdentifierPrefix": "GAN",
+    "defaultIdentifierPrefix": "PHN",
     "defaultVisitType": "OPD",
     "searchByIdForwardUrl": "/patient/{{patientUuid}}",
     "showMiddleName": true,
@@ -168,3 +168,4 @@
     }
   }
 }
+
