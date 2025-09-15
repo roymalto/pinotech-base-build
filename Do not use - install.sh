@@ -13,3 +13,4 @@ cp ~/Projects/ATISHEALTH/custom-branding/.env ~/Projects/ATISHEALTH/bahmni-docke
 docker compose up -d
 
 
+
